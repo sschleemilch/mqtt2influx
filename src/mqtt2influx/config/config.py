@@ -1,11 +1,12 @@
 from dataclasses import dataclass
-from typing import List, Tuple, Optional
 from functools import cache
+from typing import List, Optional, Tuple
 
-from .mqtt_broker import MQTTBroker
-from .influx import Influx
 from .device import Device
+from .influx import Influx
+from .mqtt_broker import MQTTBroker
 from .topic import Topic
+
 
 @dataclass
 class Config:

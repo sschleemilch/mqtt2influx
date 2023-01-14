@@ -1,28 +1,32 @@
-import yaml
 import logging
-from typing import Dict, List
 from pathlib import Path
-from .config import Config
-from .mqtt_broker import MQTTBroker
-from .influx import Influx
-from .device import Device
-from .topic import Topic
+from typing import Any, Dict, List
+
+import yaml
+
 from .. import constants as c
+from .config import Config
+from .device import Device
+from .influx import Influx
+from .mqtt_broker import MQTTBroker
+from .topic import Topic
 
 logger = logging.getLogger(c.LOGGER_NAME)
 
-def get_mqtt_broker(config: Dict) -> MQTTBroker:
+
+def get_mqtt_broker(config: Dict[str, Any]) -> MQTTBroker:
     logger.debug("Creating mqtt broker config")
-    broker = config.get("mqtt").get("broker")
+    broker = config.get("mqtt", {}).get("broker")
     url = broker.get("url")
     port = int(broker.get("port"))
     mqtt_broker = MQTTBroker(url=url, port=port)
     logger.debug(mqtt_broker)
     return mqtt_broker
 
-def get_influx(config: Dict) -> Influx:
+
+def get_influx(config: Dict[str, Any]) -> Influx:
     logger.debug("Creating influxdb config")
-    influx = config.get("influxdb")
+    influx = config.get("influxdb", {})
     url = influx.get("url")
     port = int(influx.get("port"))
     token = influx.get("token")
@@ -32,10 +36,11 @@ def get_influx(config: Dict) -> Influx:
     logger.debug(influx_config)
     return influx_config
 
-def get_devices(config: Dict) -> List[Device]:
+
+def get_devices(config: Dict[str, Any]) -> List[Device]:
     logger.debug("Creating devices config")
     devices: List[Device] = []
-    for device in config.get("devices"):
+    for device in config.get("devices", []):
         name = device.get("name")
         location = device.get("location", "unknown")
         tags = device.get("tags")
