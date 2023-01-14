@@ -4,14 +4,17 @@ mqtt:
     port: 1883
 
 devices:
-  - name: Temperature humidity sensor
+  - name: Temperature humidity sensor # Just for config file readability
     topics: 
       - name: shellies/shellyht-703408/sensor/temperature
-        type: temperature
+        type: temperature # Type will be used as a datapoint field for influxdb
       - name: shellies/shellyht-703408/sensor/humidity
         type: humidity
+    # A group can be given that will cluster it in influxdb
+    # Not required and will be "default" when left out
     group: shelly
-    tags:
+    location: buero # Location can be ommitted and will be filled with "unknown"
+    tags: # You can give arbitrary key value pair tags
       vendor: shelly
   - name: Smart plug 1
     topics:
