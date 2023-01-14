@@ -1,14 +1,16 @@
+# MQTT broker config
 mqtt:
   broker: 
-    url: 192.168.178.26
+    url: 127.0.0.1
     port: 1883
 
+# List of devices you want to gather data from
 devices:
   - name: Temperature humidity sensor # Just for config file readability
     topics: 
-      - name: shellies/shellyht-703408/sensor/temperature
+      - name: shellies/<model>-<id>/sensor/temperature
         type: temperature # Type will be used as a datapoint field for influxdb
-      - name: shellies/shellyht-703408/sensor/humidity
+      - name: shellies/<model>-<id>/sensor/humidity
         type: humidity
     # A group can be given that will cluster it in influxdb
     # Not required and will be "default" when left out
@@ -16,34 +18,11 @@ devices:
     location: buero # Location can be ommitted and will be filled with "unknown"
     tags: # You can give arbitrary key value pair tags
       vendor: shelly
-  - name: Smart plug 1
-    topics:
-      - name: shellies/shellyplug-s-4022D889813C/relay/0/power
-        type: power
-    location: buero
-    tags:
-      vendor: shelly
-    group: shelly
-  - name: Smart plug 2
-    topics:
-      - name: shellies/shellyplug-s-4022D8893CE8/relay/0/power
-        type: power
-    location: schlafzimmer
-    tags:
-      vendor: shelly
-    group: shelly
-  - name: Smart plug 4
-    topics:
-      - name: shellies/shellyplug-s-4022D8807815/relay/0/power
-        type: power
-    location: wohnzimmer
-    tags:
-      vendor: shelly
-    group: shelly
 
+# InfluxDB config
 influxdb:
-  url: 192.168.178.26
+  url: 127.0.0.1
   port: 8086
-  token: INFLUX_DB_API_TOKEN
+  token: <INFLUX_DB_API_TOKEN>
   org: home
   bucket: devices
