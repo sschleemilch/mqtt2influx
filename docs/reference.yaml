@@ -1,0 +1,46 @@
+mqtt:
+  broker: 
+    url: 192.168.178.26
+    port: 1883
+
+devices:
+  - name: Temperature humidity sensor
+    topics: 
+      - name: shellies/shellyht-703408/sensor/temperature
+        type: temperature
+      - name: shellies/shellyht-703408/sensor/humidity
+        type: humidity
+    group: shelly
+    tags:
+      vendor: shelly
+  - name: Smart plug 1
+    topics:
+      - name: shellies/shellyplug-s-4022D889813C/relay/0/power
+        type: power
+    location: buero
+    tags:
+      vendor: shelly
+    group: shelly
+  - name: Smart plug 2
+    topics:
+      - name: shellies/shellyplug-s-4022D8893CE8/relay/0/power
+        type: power
+    location: schlafzimmer
+    tags:
+      vendor: shelly
+    group: shelly
+  - name: Smart plug 4
+    topics:
+      - name: shellies/shellyplug-s-4022D8807815/relay/0/power
+        type: power
+    location: wohnzimmer
+    tags:
+      vendor: shelly
+    group: shelly
+
+influxdb:
+  url: 192.168.178.26
+  port: 8086
+  token: INFLUX_DB_API_TOKEN
+  org: home
+  bucket: devices

@@ -1,0 +1,1 @@
+LOGGER_NAME = "mqtt2influx"

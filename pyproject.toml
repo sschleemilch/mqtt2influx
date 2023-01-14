@@ -27,6 +27,9 @@ classifiers = [
 python = "^3.7"
 rich = "^12.5.1"
 rich-click = "^1.5.1"
+influxdb-client = "^1.35.0"
+paho-mqtt = "^1.6.1"
+pyaml = "^21.10.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6"
