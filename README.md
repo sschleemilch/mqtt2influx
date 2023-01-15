@@ -11,8 +11,8 @@ DEVICE 3 -> +--------------+                   +----------+
 It is configurable through a [YAML configuration](docs/reference.yaml) file.
 
 ## Requirements
-- A running mqtt broker somewhere
-- A running influx db somewhere
+- A running mqtt broker (e.g. [mosquitto](https://mosquitto.org/)) somewhere, for instance on a Raspberry Pi
+- A running [influx db](https://www.influxdata.com/) somewhere, for instance on a Raspberry Pi
 - Python > 3.7 and pip
 - systemd supported Linux (e.g. Raspbian) if you want to use the installer in the release package
 
